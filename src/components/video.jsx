@@ -42,15 +42,17 @@ const Video = () => {
     formData.append("video", videoFile);
 
     try {
-      const response = await fetch("https://spicmacaybackend-ymoy.vercel.app/upload", {
-        method: "POST",
-        body: formData,
+      const response = await axios.post("https://spicmacaybackend-ymoy.vercel.app/upload", 
+        formData,
+        {headers: {
+          'Content-Type': 'multipart/form-data',
+      },
       });
       if (response.ok) {
         alert("Video uploaded successfully!");
         setLoading(false);
       } else {
-        alert("Failed to upload video.");
+        alert("Failed to upload video.This is a large file please reduce the size");
       }
     } catch (error) {
       console.error("Error uploading video:", error);
