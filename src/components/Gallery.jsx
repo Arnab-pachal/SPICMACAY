@@ -25,7 +25,7 @@ const Gallery = () => {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('https://spicmacaybackend.vercel.app/cloud', formData, {
+      const response = await axios.post('https://spicmacaybackend-ymoy.vercel.app/cloud', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log('File uploaded successfully:', response.data);
@@ -43,7 +43,7 @@ const Gallery = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await axios.get('https://spicmacaybackend.vercel.app/');
+        const response = await axios.get('https://spicmacaybackend-ymoy.vercel.app/');
         setPhotos(response.data);
       } catch (error) {
         console.error('Error fetching photos:', error);
@@ -56,7 +56,7 @@ const Gallery = () => {
 
     try {
       console.log(id);
-      const response = await axios.delete(`https://spicmacaybackend.vercel.app/delete?id=${id}`);
+      const response = await axios.delete(`https://spicmacaybackend-ymoy.vercel.app/delete?id=${id}`);
     }
     catch (err) {
       console.log("file is not deleted");
