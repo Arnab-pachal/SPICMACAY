@@ -42,7 +42,7 @@ const Video = () => {
     formData.append("video", videoFile);
 
     try {
-      const response = await fetch("https://backend-tne7.vercel.app/upload", {
+      const response = await fetch("http://localhost:3001/upload", {
         method: "POST",
         body: formData,
       });
