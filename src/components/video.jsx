@@ -44,6 +44,7 @@ const Video = () => {
     try {
       const response = await fetch("https://spicmacayback.vercel.app/uploadvideo", 
                 { method:'POST',
+                  mode:'no-cors',
                   body:formData,
       });
       if (response.ok) {
