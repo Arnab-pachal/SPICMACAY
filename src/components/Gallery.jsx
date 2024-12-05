@@ -31,9 +31,8 @@ for (const [key, value] of formData.entries()) {
 }
 
     try {
-      const response = await fetch('https://spicmacayback.vercel.app/uploadphoto',{
+      const response = await fetch('https://spicmacayback.onrender.com/uploadphoto',{
         method:'POST',
-        mode:'no-cors',
         body:formData,
          
       });
@@ -56,7 +55,7 @@ for (const [key, value] of formData.entries()) {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await axios.get('https://spicmacayback.vercel.app/getphoto');
+        const response = await axios.get('https://spicmacayback.onrender.com/getphoto');
        
         setPhotos(response.data);
       } catch (error) {
@@ -70,7 +69,7 @@ for (const [key, value] of formData.entries()) {
 
     try {
       console.log(id);
-      const response = await axios.delete(`https://spicmacayback.vercel.app/deletephoto?id=${id}`);
+      const response = await axios.delete(`https://spicmacayback.onrender.com/deletephoto?id=${id}`);
     }
     catch (err) {
       console.log("file is not deleted");
