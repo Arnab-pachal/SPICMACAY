@@ -19,7 +19,7 @@ const Video = () => {
   useEffect(()=>{
     const rendervideo =async()=>{
        try{
-           const res = await axios.get("https://spicmacaybackend-ymoy.vercel.app/getvideo")
+           const res = await axios.get("https://spicmacayback.vercel.app/getvideo")
            setVid(res.data)
        }
        catch(err){
@@ -42,11 +42,9 @@ const Video = () => {
     formData.append("video", videoFile);
 
     try {
-      const response = await axios.post("https://spicmacaybackend-ymoy.vercel.app/upload", 
-        formData,
-        {headers: {
-          'Content-Type': 'multipart/form-data',
-      },
+      const response = await fetch("https://spicmacayback.vercel.app/uploadvideo", 
+                { method:'POST',
+                  body:formData,
       });
       if (response.ok) {
         alert("Video uploaded successfully!");
@@ -61,7 +59,7 @@ const Video = () => {
   };
 const handleDelete=async(id)=>{
 console.log("Delete is triggered");
-let result = await axios.delete(`https://spicmacaybackend-ymoy.vercel.app/deletevid?id=${id}`);
+let result = await axios.delete(`https://spicmacayback.vercel.app/deletevideo?id=${id}`);
 console.log(result.data);
 }
 const style = {

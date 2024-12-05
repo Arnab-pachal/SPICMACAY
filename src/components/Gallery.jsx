@@ -9,6 +9,7 @@ const Gallery = () => {
   const [isHovered, setIsHovered] = useState(false);
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+    console.log(selectedFile);
     setFile(selectedFile);
     setPreview(URL.createObjectURL(selectedFile)); // Show preview
   };
@@ -19,17 +20,28 @@ const Gallery = () => {
       alert('Please select a file first.');
       return;
     }
-
+    console.log(file)
     setLoading(true);
     const formData = new FormData();
     formData.append('file', file);
+    console.log(formData.get('file'))
+
+for (const [key, value] of formData.entries()) {
+  console.log(key, value); // Debug FormData content
+}
 
     try {
-      const response = await axios.post('https://spicmacaybackend-ymoy.vercel.app/cloud', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      const response = await fetch('https://spicmacayback.vercel.app/uploadphoto',{
+        method:'POST',
+        body:formData,
+         
       });
+      if(response.ok){
       console.log('File uploaded successfully:', response.data);
-      alert('File uploaded successfully!');
+      alert('File uploaded successfully!');}
+      else{
+        console.log(response);
+      }
 
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -43,7 +55,8 @@ const Gallery = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await axios.get('https://spicmacaybackend-ymoy.vercel.app/');
+        const response = await axios.get('https://spicmacayback.vercel.app/getphoto');
+       
         setPhotos(response.data);
       } catch (error) {
         console.error('Error fetching photos:', error);
@@ -56,7 +69,7 @@ const Gallery = () => {
 
     try {
       console.log(id);
-      const response = await axios.delete(`https://spicmacaybackend-ymoy.vercel.app/delete?id=${id}`);
+      const response = await axios.delete(`https://spicmacayback.vercel.app/deletephoto?id=${id}`);
     }
     catch (err) {
       console.log("file is not deleted");
@@ -103,7 +116,7 @@ const Gallery = () => {
               id="formFile"
               className="form-control mb-2"
               type="file"
-              name="file"
+              name="image"
               style={{ width: '250px' }}
               onChange={handleFileChange}
             />
