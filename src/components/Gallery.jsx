@@ -33,6 +33,7 @@ for (const [key, value] of formData.entries()) {
     try {
       const response = await fetch('https://spicmacayback.vercel.app/uploadphoto',{
         method:'POST',
+        mode:'no-cors',
         body:formData,
          
       });
